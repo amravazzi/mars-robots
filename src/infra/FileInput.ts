@@ -17,8 +17,6 @@ export class FileInput implements IInput {
   }
 
   async getTelemetry() {
-    // let telemetryRaw: string | undefined = "";
-
     try {
       let telemetryRaw = await readFile(this.file, "utf-8");
       const telemetry = telemetryRaw.split("\n");
