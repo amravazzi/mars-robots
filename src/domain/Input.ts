@@ -3,18 +3,18 @@ import { Orientation } from "./Orientation";
 import { AvailableCommands } from "./Commands/AvailableCommands";
 
 // this is for only 1 robot...
-export interface IRobotTelemetry {
-  // startingPosition: Coordinate;
-  startingPosition: string[];
-  startingDirection: string;
-  // commands: AvailableCommands;
-  commands: string[];
-}
+// export interface IRobotTelemetry {
+//   // startingPosition: Coordinate;
+//   startingPosition: number[];
+//   startingDirection: string;
+//   // commands: AvailableCommands;
+//   commands: string[];
+// }
 
-export interface ITelemetryData {
-  robotsProperties: IRobotTelemetry[];
-  planetBoundaries: number[];
-}
+// export interface ITelemetryData {
+//   robotsProperties: IRobotTelemetry[];
+//   planetBoundaries: number[];
+// }
 
 export class Input {
   public readonly telemetry;
@@ -23,10 +23,10 @@ export class Input {
     this.telemetry = telemetry;
   }
 
-  getData(): ITelemetryData {
+  getData() {
     const [marsBoundaries, ...robotsRaw] = this.telemetry;
 
-    const robotsProperties: IRobotTelemetry[] = robotsRaw
+    const robotsProperties = robotsRaw
       .map((el, i) => {
         if (!el) {
           const [startingPosX, startingPosY, startingDirection] =
