@@ -1,30 +1,33 @@
-import { Coordinate } from "./Coordinate";
-import { Orientation } from "./Orientation";
-import { AvailableCommands } from "./Commands/AvailableCommands";
+// import { Coordinate } from "./Coordinate";
+// import { Orientation } from "./Orientation";
+// import { AvailableCommands } from "./Commands/AvailableCommands";
 
 // this is for only 1 robot...
-// export interface IRobotTelemetry {
-//   // startingPosition: Coordinate;
-//   startingPosition: number[];
-//   startingDirection: string;
-//   // commands: AvailableCommands;
-//   commands: string[];
-// }
+export interface IRobotTelemetry {
+  // startingPosition: Coordinate;
+  startingPosition: number[];
+  startingDirection: string;
+  // commands: AvailableCommands;
+  commands: string[];
+}
 
-// export interface ITelemetryData {
-//   robotsProperties: IRobotTelemetry[];
-//   planetBoundaries: number[];
-// }
+export type IRobotTelemetryType = IRobotTelemetry | undefined;
+
+export interface ITelemetryData {
+  robotsProperties: IRobotTelemetryType[];
+  planetBoundaries: number[];
+}
 
 export class Input {
-  public readonly telemetry;
+  public readonly telemetryRaw;
 
-  constructor(telemetry: string[]) {
-    this.telemetry = telemetry;
+  constructor(telemetryRaw: string[] | undefined) {
+    this.telemetryRaw = telemetryRaw;
   }
 
-  getData() {
-    const [marsBoundaries, ...robotsRaw] = this.telemetry;
+  getData(): ITelemetryData {
+    // https://stackoverflow.com/a/58225716
+    const [marsBoundaries, ...robotsRaw] = this.telemetryRaw || [];
 
     const robotsProperties = robotsRaw
       .map((el, i) => {
@@ -49,13 +52,11 @@ export class Input {
       })
       .filter((el) => el);
 
-    console.log({ robotsProperties: robotsProperties[0] });
-
     return {
       robotsProperties,
       planetBoundaries: [
         parseInt(marsBoundaries.split(" ")[0]),
-        parseInt(marsBoundaries.split(" ")[1])
+        parseInt(marsBoundaries.split(" ")[1]),
       ],
     };
   }
