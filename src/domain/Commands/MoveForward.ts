@@ -27,16 +27,16 @@ export class MoveForward extends Command {
     );
 
     if (this.currentOrientation === Orientation.N) {
-      nextCoordinate.y++;
+      nextCoordinate.y ?? 0 + 1;
     }
     if (this.currentOrientation === Orientation.E) {
-      nextCoordinate.x++;
+      nextCoordinate.x ?? 0 + 1;
     }
     if (this.currentOrientation === Orientation.S) {
-      nextCoordinate.y--;
+      nextCoordinate.y ?? 0 - 1;
     }
     if (this.currentOrientation === Orientation.W) {
-      nextCoordinate.x--;
+      nextCoordinate.x ?? 0 - 1;
     }
 
     return nextCoordinate;
