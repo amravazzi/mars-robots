@@ -1,12 +1,12 @@
 import { Orientation } from "../Orientation";
 import { Command } from "./Command";
-import { Planet } from "../Planets/Planet";
 
 export class TurnLeft extends Command {
   public currentOrientation;
+  TURN_STEP: number = 90;
 
-  constructor(currentPlanet: Planet, currentOrientation: Orientation) {
-    super(currentPlanet);
+  constructor(currentOrientation: Orientation) {
+    super();
     this.currentOrientation = currentOrientation;
   }
 
@@ -16,7 +16,7 @@ export class TurnLeft extends Command {
 
   private rotateCounterClockwise(): Orientation {
     const nextOrientation =
-      this.currentOrientation > 0 ? this.currentOrientation - 90 : 270;
+      this.currentOrientation > 0 ? this.currentOrientation - this.TURN_STEP : 270;
 
     return nextOrientation;
   }

@@ -10,9 +10,8 @@ export class MoveForward extends Command {
   constructor(
     currentCoordinate: Coordinate,
     currentOrientation: Orientation,
-    currentPlanet: Planet
   ) {
-    super(currentPlanet);
+    super();
     this.currentCoordinate = currentCoordinate;
     this.currentOrientation = currentOrientation;
   }

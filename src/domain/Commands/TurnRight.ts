@@ -4,9 +4,10 @@ import { Planet } from "../Planets/Planet";
 
 export class TurnRight extends Command {
   public currentOrientation;
+  TURN_STEP: number = 90;
 
-  constructor(currentPlanet: Planet, currentOrientation: Orientation) {
-    super(currentPlanet);
+  constructor(currentOrientation: Orientation) {
+    super();
     this.currentOrientation = currentOrientation;
   }
 
@@ -16,7 +17,9 @@ export class TurnRight extends Command {
 
   private rotateClockwise(): Orientation {
     const nextOrientation =
-      this.currentOrientation < 270 ? this.currentOrientation + 90 : 0;
+      this.currentOrientation < 270
+        ? this.currentOrientation + this.TURN_STEP
+        : 0;
 
     return nextOrientation;
   }
