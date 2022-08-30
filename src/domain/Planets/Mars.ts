@@ -2,15 +2,25 @@ import { Coordinate } from "../Coordinate";
 import { Planet } from "./Planet";
 
 export class Mars implements Planet {
-  xBoundary: number;
-  yBoundary: number;
+  xBoundary: number | RangeError;
+  yBoundary: number | RangeError;
   scentedCoordinates: Coordinate[];
 
   constructor(coordinate: Coordinate) {
-    this.xBoundary = coordinate.x;
-    this.yBoundary = coordinate.y;
+    this.xBoundary =
+      coordinate.x <= 50
+        ? coordinate.x
+        : new RangeError("X boundary should be between 1 and 50");
+    this.yBoundary =
+      coordinate.y <= 50
+        ? coordinate.y
+        : new RangeError("Y boundary should be between 1 and 50");
     this.scentedCoordinates = [];
   }
+
+  setX() {}
+
+  setY() {}
 
   createScentedCoordinate(coordinate: Coordinate): void {
     this.scentedCoordinates.push(coordinate);
