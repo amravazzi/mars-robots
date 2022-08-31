@@ -21,8 +21,4 @@ import { StartRobots } from "./usecases/start-robots";
 
   const moveRobots = new MoveRobotsSwarm(robots.start(), mars);
   const robotsAfter = moveRobots.move();
-  // console.log({
-  //   a: robotsAfter[2].currentCoordinate,
-  //   b: Orientation[robotsAfter[2].currentOrientation],
-  // });
 })();
