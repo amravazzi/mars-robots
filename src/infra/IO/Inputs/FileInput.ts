@@ -1,11 +1,3 @@
-// export interface IInput {
-//   // readTelemetryData: () => Object[]; // Object[] -> Command[]
-//   marsBoundary: string[]; // string[] -> Coordinate
-//   startingPosition: string[]; // string[] -> Coordinate
-//   startingDirection: string; // string -> Orientation
-//   commands: string[]; // string[] -> Command[]
-// }
-
 import { readFile } from "node:fs/promises";
 import { IInput } from "./IInput";
 
