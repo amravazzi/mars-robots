@@ -15,9 +15,17 @@ export class TurnLeft extends Command {
   }
 
   private rotateCounterClockwise(): Orientation {
-    const nextOrientation =
-      this.currentOrientation > 0 ? this.currentOrientation - this.TURN_STEP : 270;
+    const orientation =
+      typeof this.currentOrientation === "string"
+        ? Orientation[this.currentOrientation]
+        : this.currentOrientation;
 
+    const nextOrientation =
+      orientation > 0
+        ? orientation - this.TURN_STEP
+        : 270;
+
+    // console.log("TurnLeft", { orientation, nextOrientation });
     return nextOrientation;
   }
 }

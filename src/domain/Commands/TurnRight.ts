@@ -1,6 +1,5 @@
 import { Orientation } from "../Orientation";
 import { Command } from "./Command";
-import { Planet } from "../Planets/Planet";
 
 export class TurnRight extends Command {
   public currentOrientation;
@@ -16,11 +15,17 @@ export class TurnRight extends Command {
   }
 
   private rotateClockwise(): Orientation {
+    const orientation =
+      typeof this.currentOrientation === "string"
+        ? Orientation[this.currentOrientation]
+        : this.currentOrientation;
+
     const nextOrientation =
-      this.currentOrientation < 270
-        ? this.currentOrientation + this.TURN_STEP
+      orientation < 270
+        ? orientation + this.TURN_STEP
         : 0;
 
+    // console.log("TurnRight", { orientation, nextOrientation });
     return nextOrientation;
   }
 }
