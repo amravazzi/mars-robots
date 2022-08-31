@@ -1,24 +1,45 @@
 import { Coordinate } from "./Coordinate";
 import { Orientation } from "./Orientation";
-import { Planet } from "./Planets/Planet";
 import { Robot } from "./Robot";
 
-interface RobotReport {
+export type OutputReport = string[];
+
+export interface formatedReport {
   position: Coordinate;
-  orientation: Orientation;
+  orientation: string;
   isLost: boolean;
 }
 export class Output {
-  public readonly robots;
-  public readonly planet;
+  private readonly robots;
 
-  constructor(robots: Robot[], planet: Planet) {
+  constructor(robots: Robot[]) {
     this.robots = robots;
-    this.planet = planet;
   }
 
-  getReport(): RobotReport[] {
+  getReport(): OutputReport {
+    const robotsFormated = this.formatReport();
 
-    return [];
+    let out = [];
+
+    for (let r of robotsFormated) {
+      let msg = `${r.position.x} ${r.position.y} ${r.orientation} ${
+        r.isLost ? "LOST" : ""
+      }`;
+      out.push(msg);
+    }
+
+    return out;
+  }
+
+  private formatReport(): formatedReport[] {
+    let robotsReport: formatedReport[] = [];
+
+    robotsReport = this.robots.map((el) => ({
+      position: el.currentCoordinate,
+      orientation: Orientation[el.currentOrientation],
+      isLost: el.isLost,
+    }));
+
+    return robotsReport;
   }
 }
