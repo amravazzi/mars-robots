@@ -21,16 +21,8 @@ export class MoveRobot implements Move {
     let intermediateCoordinate: Coordinate = this.robot.currentCoordinate;
     let intermediateOrientation: Orientation = this.robot.currentOrientation;
 
-    console.log("---------------");
-    console.log("starting ", {
-      startingCoord: intermediateCoordinate,
-      startingOrient: intermediateOrientation,
-    });
-
     for (let comm of commands) {
       if (this.robot.isLost) break;
-
-      console.log({ comm });
 
       switch (comm) {
         case "F":
@@ -82,13 +74,6 @@ export class MoveRobot implements Move {
 
     this.robot.currentCoordinate = intermediateCoordinate;
     this.robot.currentOrientation = intermediateOrientation;
-
-    console.log({
-      intermediateCoordinate,
-      intermediateOrientation,
-      isLost: this.robot.isLost,
-      scentedCoordinates: this.robot.planet.scentedCoordinates,
-    });
 
     return this.robot;
   }
