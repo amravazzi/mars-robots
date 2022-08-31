@@ -42,6 +42,11 @@ export class MoveForward extends Command {
 
     const nextCoordinate = new Coordinate(nextCoordinateX, nextCoordinateY);
 
+    console.log("MoveForward", {
+      startingCoordinate: [this.currentCoordinate.x, this.currentCoordinate.y],
+      nextCoordinate,
+    });
+
     return nextCoordinate;
   }
 }

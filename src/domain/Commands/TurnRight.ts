@@ -25,7 +25,10 @@ export class TurnRight extends Command {
         ? orientation + this.TURN_STEP
         : 0;
 
-    // console.log("TurnRight", { orientation, nextOrientation });
+    console.log("TurnRight", {
+      startingOrientation: orientation,
+      nextOrientation,
+    });
     return nextOrientation;
   }
 }
