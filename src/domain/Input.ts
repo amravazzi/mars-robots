@@ -26,7 +26,6 @@ export class Input {
   }
 
   getData(): ITelemetryData {
-    // https://stackoverflow.com/a/58225716
     const [marsBoundaries, ...robotsRaw] = this.telemetryRaw || [];
 
     const robotsProperties = robotsRaw
