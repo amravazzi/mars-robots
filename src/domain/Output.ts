@@ -1,14 +1,24 @@
 import { Coordinate } from "./Coordinate";
 import { Orientation } from "./Orientation";
+import { Planet } from "./Planets/Planet";
+import { Robot } from "./Robot";
 
+interface RobotReport {
+  position: Coordinate;
+  orientation: Orientation;
+  isLost: boolean;
+}
 export class Output {
-  public readonly finalPostion;
-  public readonly finalOrientation;
+  public readonly robots;
+  public readonly planet;
 
-  constructor(finalPostion: Coordinate, finalOrientation: Orientation) {
-    this.finalPostion = finalPostion;
-    this.finalOrientation = finalOrientation;
+  constructor(robots: Robot[], planet: Planet) {
+    this.robots = robots;
+    this.planet = planet;
   }
 
+  getReport(): RobotReport[] {
 
+    return [];
+  }
 }
