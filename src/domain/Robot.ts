@@ -1,9 +1,6 @@
 import { Orientation } from "../domain/Orientation";
 import { Coordinate } from "../domain/Coordinate";
 import { Planet } from "./Planets/Planet";
-// import { Command } from "./Commands/Command";
-
-// IsOutOfBounds
 
 export class Robot {
   private readonly planet: Planet;
