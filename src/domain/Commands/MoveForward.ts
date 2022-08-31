@@ -1,16 +1,12 @@
 import { Coordinate } from "../Coordinate";
 import { Orientation } from "../Orientation";
 import { Command } from "./Command";
-import { Planet } from "../Planets/Planet";
 
 export class MoveForward extends Command {
   public currentCoordinate;
-  public currentOrientation;
+  public readonly currentOrientation;
 
-  constructor(
-    currentCoordinate: Coordinate,
-    currentOrientation: Orientation,
-  ) {
+  constructor(currentCoordinate: Coordinate, currentOrientation: Orientation) {
     super();
     this.currentCoordinate = currentCoordinate;
     this.currentOrientation = currentOrientation;
@@ -21,23 +17,30 @@ export class MoveForward extends Command {
   }
 
   private possibleNextPosition(): Coordinate {
-    const nextCoordinate = new Coordinate(
-      this.currentCoordinate.x,
-      this.currentCoordinate.y
-    );
+    let nextCoordinateX = this.currentCoordinate.x;
+    let nextCoordinateY = this.currentCoordinate.y;
 
-    if (this.currentOrientation === Orientation.N) {
-      nextCoordinate.y ?? 0 + 1;
+    const orientation =
+      typeof this.currentOrientation === "string"
+        ? Orientation[this.currentOrientation]
+        : this.currentOrientation;
+
+    console.log({ orientation: this.currentOrientation });
+
+    if (orientation === Orientation.N) {
+      nextCoordinateY++;
     }
-    if (this.currentOrientation === Orientation.E) {
-      nextCoordinate.x ?? 0 + 1;
+    if (orientation === Orientation.E) {
+      nextCoordinateX++;
     }
-    if (this.currentOrientation === Orientation.S) {
-      nextCoordinate.y ?? 0 - 1;
+    if (orientation === Orientation.S) {
+      nextCoordinateY--;
     }
-    if (this.currentOrientation === Orientation.W) {
-      nextCoordinate.x ?? 0 - 1;
+    if (orientation === Orientation.W) {
+      nextCoordinateX--;
     }
+
+    const nextCoordinate = new Coordinate(nextCoordinateX, nextCoordinateY);
 
     return nextCoordinate;
   }
