@@ -21,14 +21,8 @@ export class TurnLeft extends Command {
         : this.currentOrientation;
 
     const nextOrientation =
-      orientation > 0
-        ? orientation - this.TURN_STEP
-        : 270;
+      orientation > 0 ? orientation - this.TURN_STEP : 270;
 
-    console.log("TurnLeft", {
-      startingOrientation: orientation,
-      nextOrientation,
-    });
     return nextOrientation;
   }
 }

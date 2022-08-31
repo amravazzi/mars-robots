@@ -15,20 +15,14 @@ export class TurnRight extends Command {
   }
 
   private rotateClockwise(): Orientation {
-    const orientation =
+    const orientation: number =
       typeof this.currentOrientation === "string"
         ? Orientation[this.currentOrientation]
         : this.currentOrientation;
 
     const nextOrientation =
-      orientation < 270
-        ? orientation + this.TURN_STEP
-        : 0;
+      orientation < 270 ? orientation + this.TURN_STEP : 0;
 
-    console.log("TurnRight", {
-      startingOrientation: orientation,
-      nextOrientation,
-    });
     return nextOrientation;
   }
 }

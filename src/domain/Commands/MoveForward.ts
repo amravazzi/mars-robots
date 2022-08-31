@@ -25,8 +25,6 @@ export class MoveForward extends Command {
         ? Orientation[this.currentOrientation]
         : this.currentOrientation;
 
-    console.log({ orientation: this.currentOrientation });
-
     if (orientation === Orientation.N) {
       nextCoordinateY++;
     }
@@ -41,11 +39,6 @@ export class MoveForward extends Command {
     }
 
     const nextCoordinate = new Coordinate(nextCoordinateX, nextCoordinateY);
-
-    console.log("MoveForward", {
-      startingCoordinate: [this.currentCoordinate.x, this.currentCoordinate.y],
-      nextCoordinate,
-    });
 
     return nextCoordinate;
   }
