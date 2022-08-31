@@ -23,7 +23,13 @@ export class Mars implements Planet {
   }
 
   isCoordinateScented(coordinate: Coordinate): boolean {
-    return this.scentedCoordinates.includes(coordinate);
+    // return this.scentedCoordinates.includes(coordinate);
+    for (let coord of this.scentedCoordinates) {
+      if (coord.x === coordinate.x && coord.y === coordinate.y) {
+        return true;
+      }
+    }
+    return false;
   }
 
   isCoordinateOutOfBoundaries(coordinate: Coordinate): boolean {
