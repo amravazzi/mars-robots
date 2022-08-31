@@ -22,23 +22,47 @@ export class MoveRobot implements Move {
     let intermediateOrientation: Orientation = this.robot.currentOrientation;
 
     console.log("---------------");
+    console.log("starting ", {
+      startingCoord: intermediateCoordinate,
+      startingOrient: intermediateOrientation,
+    });
 
     for (let comm of commands) {
       if (this.robot.isLost) break;
 
+      console.log({ comm });
+
       switch (comm) {
         case "F":
-          if (this.planet.isCoordinateScented(intermediateCoordinate)) break;
-          const mf = new MoveForward(
+          const nextPosition = new MoveForward(
             intermediateCoordinate,
             intermediateOrientation
           );
-          intermediateCoordinate = mf.exec();
-          if (this.planet.isCoordinateOutOfBoundaries(intermediateCoordinate)) {
-            this.robot.isLost = true;
-            this.planet.createScentedCoordinate(intermediateCoordinate);
+          const nextPositionCoord = nextPosition.exec();
+
+          // is the current coordinate (intermediateCoordinate) scented?
+          if (this.planet.isCoordinateScented(intermediateCoordinate)) {
+            // is the next coordinate (nextPositionCoord) out of boundaries?
+            if (this.planet.isCoordinateOutOfBoundaries(nextPositionCoord)) {
+              // current is scented and next is OOB: don't move
+              break;
+            }
+            // current is scented and next is NOT OOB: moves the robot
+            intermediateCoordinate = nextPositionCoord;
+            break;
+          } else {
+            // is the next coordinate (nextPositionCoord) out of boundaries?
+            if (this.planet.isCoordinateOutOfBoundaries(nextPositionCoord)) {
+              // the robot is lost now
+              this.robot.isLost = true;
+              // and a new scented coordinate is created
+              this.planet.createScentedCoordinate(intermediateCoordinate);
+              break;
+            }
+            // otherwise, move the robot
+            intermediateCoordinate = nextPositionCoord;
+            break;
           }
-          break;
 
         case "L":
           const tl = new TurnLeft(intermediateOrientation);
@@ -59,7 +83,12 @@ export class MoveRobot implements Move {
     this.robot.currentCoordinate = intermediateCoordinate;
     this.robot.currentOrientation = intermediateOrientation;
 
-    console.log({ intermediateCoordinate, intermediateOrientation });
+    console.log({
+      intermediateCoordinate,
+      intermediateOrientation,
+      isLost: this.robot.isLost,
+      scentedCoordinates: this.robot.planet.scentedCoordinates,
+    });
 
     return this.robot;
   }
