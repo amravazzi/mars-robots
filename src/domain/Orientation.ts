@@ -1,3 +1,7 @@
+//    N
+// W    E
+//    S
+
 export enum Orientation {
   N = 0,
   // NE = 45,
