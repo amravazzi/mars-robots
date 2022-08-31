@@ -18,15 +18,15 @@ export class Mars implements Planet {
     this.scentedCoordinates = [];
   }
 
-  setX() {}
-
-  setY() {}
-
   createScentedCoordinate(coordinate: Coordinate): void {
     this.scentedCoordinates.push(coordinate);
   }
 
   isCoordinateScented(coordinate: Coordinate): boolean {
     return this.scentedCoordinates.includes(coordinate);
+  }
+
+  isCoordinateOutOfBoundaries(coordinate: Coordinate): boolean {
+    return coordinate.x > this.xBoundary || coordinate.y > this.yBoundary;
   }
 }
