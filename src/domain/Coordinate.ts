@@ -1,4 +1,3 @@
-// export type Coordinate = [string, string];
 export class Coordinate {
   x: number;
   y: number;

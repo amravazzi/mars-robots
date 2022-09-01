@@ -1,8 +1,4 @@
-// import { Coordinate } from "./Coordinate";
-// import { Orientation } from "./Orientation";
-// import { AvailableCommands } from "./Commands/AvailableCommands";
-
-// this is for only 1 robot...
+// TODO: improve IRobotTelemetry interface...
 export interface IRobotTelemetry {
   // startingPosition: Coordinate;
   startingPosition: number[];

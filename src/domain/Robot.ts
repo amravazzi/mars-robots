@@ -23,6 +23,6 @@ export class Robot {
   }
 
   shouldMoveForward(nextCoordinate: Coordinate) {
-    return this.planet.isCoordinateScented(nextCoordinate);
+    return !this.planet.isCoordinateScented(nextCoordinate);
   }
 }

@@ -25,7 +25,7 @@ export class Output {
       let msg = `${r.position.x} ${r.position.y} ${r.orientation} ${
         r.isLost ? "LOST" : ""
       }`;
-      out.push(msg);
+      out.push(msg.trimEnd());
     }
 
     return out;

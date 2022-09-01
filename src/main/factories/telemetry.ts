@@ -6,6 +6,5 @@ export const makeTelemetry = async (): Promise<ITelemetryData> => {
   const telemetryRaw = await file.getTelemetry();
   const input = new Input(telemetryRaw);
   const telemetry = input.getData();
-
   return telemetry;
 };
